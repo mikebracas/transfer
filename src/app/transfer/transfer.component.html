@@ -1,0 +1,59 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+    <div class="row">
+          
+        <div class="col s6">
+               
+            <div class="row card">
+                <h4>Create new transfer</h4>
+                <form [formGroup]="transferForm" (ngSubmit)="onSubmit()" class="">
+                    <div class="">
+                        
+                        <div class="input-field col s12">
+                            <input id="accountOrigin" required type="text" formControlName="accountOrigin" class="form-control"  />                                    
+                            <label for="accountOrigin">Acount</label>   
+                        </div>
+
+                        <div class="input-field col s12">
+                            <input id="accountDestination" required type="text" formControlName="accountDestination" class="form-control"  />                                    
+                            <label for="accountDestination">Acount</label>   
+                        </div>
+
+                        <div class="input-field col s12">
+                            <input id="amount" required type="text" formControlName="amount" class="form-control"  />                                    
+                            <label for="amount">Acount</label>   
+                        </div>
+                        
+                        <div class="right-align">
+                            <button [disabled]="!transferForm.valid" class="btn-margin-right btn waves-effect waves-light" type="submit" name="action">Transfer
+                                <i class="material-icons right">send</i>
+                                </button>
+                            <button class="btn waves-effect waves-light btn-margin-right">Cancel</button>    
+                        </div>
+                        <div><br></div>
+                    </div>   
+                </form>
+            </div>
+
+
+        </div>
+        <div class="col s6">
+            <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [title]="title"></apx-chart>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col s12 card" *ngFor="let account of transactionsByAccount">
+            <table class="table responsive-table" >
+                <tr *ngFor="let transacction of account.transacctions">
+                <td>{{ account.AccountOrigin }}</td>
+                <td>{{ account.AccountDestination }}</td>
+                <td>{{ transacction.DateTranfer }}</td>
+                <td>{{ transacction.Amount }}</td>
+                </tr>
+            </table>
+        </div>  
+    </div>
+</div>
